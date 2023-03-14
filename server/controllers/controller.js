@@ -37,16 +37,15 @@ const controller = {
 
   async createList(req, res, next) {
     console.log('in createList middleware');
-    const data = await schemas.list.create({title: ' '});
-    console.log(data)
+    const data = await schemas.list.create({ title: ' ' });
     res.locals._id = data._id;
     // console.log(data);
     next();
   },
 
-  async saveList(req, res, next){
+  async saveList(req, res, next) {
     console.log('in saveList middleware');
-    const {title, team, tasks, _id } = req.body
+    const { title, team, tasks, _id } = req.body
     const updated = await schemas.list.updateOne({ _id }, { title, team, taskArr: tasks }, { new: true });
     res.locals.updated = updated;
     next();
@@ -63,27 +62,27 @@ const controller = {
   },
 
   async createAndAddTask(req, res, next) {
+
     console.log('in createTask middleware');
     const { _id, task } = req.body;
-
+    console.log("req body", req.body);
     const data = await schemas.taskArr.create({ task });
-    // console.log(data);
     const currentData = await schemas.list.findOne({ _id });
     // console.log(currentData);
     const updated = await schemas.list.updateOne(
       { _id },
       { taskArr: [...currentData.taskArr, data] }
     );
-    // console.log(updated);
-    // console.log(data);
-    next();
+    console.log(updated);
+    console.log(data);
+    return next();
   },
 
   async editTask(req, res, next) {
     const { _id, task, newTask } = req.body;
-    const list = schemas.list.findOne({_id});
+    const list = schemas.list.findOne({ _id });
     list.taskArr.forEach((el) => {
-      if(el.task === task){
+      if (el.task === task) {
         el.task = newTask;
       }
     })
@@ -154,9 +153,9 @@ const controller = {
     next();
   },
 
-  async home(req,res,next){
-    
-    const data =  await schemas.list.find({});
+  async home(req, res, next) {
+
+    const data = await schemas.list.find({});
     res.locals.lists = data
     next;
   }

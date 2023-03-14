@@ -34,7 +34,6 @@ const people = mongoose.model('people', personSchema);
 const taskArrSchema = new Schema({
   task: {
     type: String,
-    required: true,
   },
   description: String,
   user: String,

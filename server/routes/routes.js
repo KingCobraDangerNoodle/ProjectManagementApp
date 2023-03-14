@@ -13,7 +13,7 @@ router.post('/login', controller.login, (req, res) => {
 });
 
 router.post('/signup', controller.isUnique, controller.signup, (req, res) => {
-  res.status(200).json({ message: 'user created'});
+  res.status(200).json({ message: 'user created' });
 });
 
 router.post('/createList', controller.createList, (req, res) => {
@@ -24,7 +24,7 @@ router.post('/deleteList', controller.deleteList, (req, res) => {
   res.status(200).json('list deleted');
 });
 
-router.post('/saveList', controller.saveList, (req, res) =>{
+router.post('/saveList', controller.saveList, (req, res) => {
   res.status(200).json(res.locals.updated);
 })
 
@@ -33,7 +33,7 @@ router.post('/createAndAddTask', controller.createAndAddTask, (req, res) => {
 });
 
 router.post('/editTask', controller.editTask, (req, res) => {
-    res.status(200).json('task edited');
+  res.status(200).json('task edited');
 });
 
 router.post('/deleteTask', controller.deleteTask, (req, res) => {

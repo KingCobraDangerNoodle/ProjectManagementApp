@@ -10,8 +10,8 @@ const App = (props) => {
 
   return (
     <div>
-      <Toolbar /> 
-      <ListGenerator /> 
+      <Toolbar />
+      <ListGenerator />
     </div>
   )
 };
