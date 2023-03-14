@@ -1,0 +1,135 @@
+
+
+body {
+	font-family: "Roboto", sans-serif;
+	background-color: #e1e6e9;
+	margin: 0px;
+	padding: 0px
+ }
+
+
+	h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: "Roboto", sans-serif; }
+
+
+  
+
+.login{
+	display: flex;
+	flex-direction: column;
+	margin: 0 auto;
+	border: 1px solid gray;
+	border-radius: 5px;
+	width: 400px;
+	height: 600px;
+	padding: 20px;
+	background-color: white;
+	justify-content: center;
+	align-items: center;
+	
+	
+	button{
+		margin-top: 20px;
+		margin-bottom: 20px;
+		padding: 20px 100px;
+		border-radius: 5px;
+		border: none;
+		background-color: #38d39f;
+		color: white;
+
+		&:hover{
+			background-color: white;
+			color: #38d39f;
+			cursor: pointer;
+			border: 1px solid #38d39f;
+		}
+	}
+
+	input{
+		border: none;
+		border-bottom: 1px solid gray;
+		margin: 10px 0;
+		width: 75%;
+		height: 30px;
+		padding-bottom: 10px;
+
+		}
+
+	a{
+		color: #38d39f;
+	}
+
+}
+
+.toolBar{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 20px;
+	background-color: #38d39f;
+	color: white;
+	font-size: 20px;
+	font-weight: bold;
+
+	button{
+		border: 1px solid white;
+		background-color: #38d39f;
+		color: white;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 5px;
+		margin: 5px;
+
+		&:hover{
+			background-color: white;
+			color: #38d39f;
+			cursor: pointer;
+		}
+	}
+}
+
+.listContainer{
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.list{
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	border: 1px solid gray;
+	margin: 10px;
+	padding: 10px;
+
+	input{
+		margin: 5px;
+	}
+	.buttonRow{
+		display: flex;
+		justify-content: space-evenly;
+		width: 100%;
+
+	}
+	button{
+		border: none;
+		background-color: #38d39f;
+		color: white;
+		font-size: 15px;
+		font-weight: bold;
+		padding: 5px;
+		margin: 5px;
+		border-radius: 5px;
+
+		&:hover{
+			background-color: white;
+			color: #38d39f;
+			cursor: pointer;
+			border: 1px solid #38d39f;
+		}
+	}
+	
+}
+
