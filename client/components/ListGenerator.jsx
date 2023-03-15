@@ -14,8 +14,8 @@ const ListGenerator = (props) => {
     const currentList = lists[i];
     arrOfLists.push(
     <List
-      title={currentList.title} 
-      tasks={currentList.tasks}
+      title={currentList.title}
+      tasks={currentList.tasks}// if we change this to just allTasks {} then only render those task who property is a parent
       team={currentList.team}
       _id={currentList._id}
     />
