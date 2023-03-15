@@ -1,54 +1,68 @@
 const express = require('express');
-const controller = require('../controllers/controller.js');
+const listController = require('../controllers/listController.js');
+const userController = require('../controllers/userController.js');
+const taskController = require('../controllers/taskController.js');
+
 const router = express.Router();
 
 router.use(express.json());
 
-router.get('/home', controller.home, (req, res) => {
+router.get('/home', listController.home, (req, res) => {
   res.status(200).send(res.locals.lists);
 });
 
-router.post('/login', controller.login, (req, res) => {
-  res.status(200).send(res.locals.people);
+router.post('/login', userController.login, (req, res) => {
+  console.log('in login route');
+  res.status(200).send(res.locals.user);
 });
 
-router.post('/signup', controller.isUnique, controller.signup, (req, res) => {
-  res.status(200).json({ message: 'user created'});
-});
+router.post(
+  '/signup',
+  userController.isUnique,
+  userController.signup,
+  (req, res) => {
+    res.status(200).json({ message: 'user created' });
+  }
+);
 
-router.post('/createList', controller.createList, (req, res) => {
+router.post('/createList', listController.createList, (req, res) => {
   res.status(200).json(res.locals._id); // tell them to store this id in list component
 });
 
-router.post('/deleteList', controller.deleteList, (req, res) => {
+router.post('/deleteList', listController.deleteList, (req, res) => {
   res.status(200).json('list deleted');
 });
 
-router.post('/saveList', controller.saveList, (req, res) =>{
+router.post('/saveList', listController.saveList, (req, res) => {
   res.status(200).json(res.locals.updated);
-})
-
-router.post('/createAndAddTask', controller.createAndAddTask, (req, res) => {
-  res.status(200).json('task created');
 });
 
-router.post('/editTask', controller.editTask, (req, res) => {
-    res.status(200).json('task edited');
+router.post(
+  '/createAndAddTask',
+  taskController.createAndAddTask,
+  (req, res) => {
+    res.status(200).json('task created');
+  }
+);
+
+router.post('/editTask', taskController.editTask, (req, res) => {
+  res.status(200).json('task edited');
 });
 
-router.post('/deleteTask', controller.deleteTask, (req, res) => {
+router.post('/deleteTask', taskController.deleteTask, (req, res) => {
   res.status(200).json('task deleted');
 });
 
-router.post('/moveTask', controller.moveTask, (req, res) => {
+router.post('/moveTask', taskController.moveTask, (req, res) => {
   res.status(200).json('task moved');
 });
 
-router.post('/assignUser', controller.assignUser, (req, res) => {
+// this should be under userController ideally
+router.post('/assignUser', listController.assignUser, (req, res) => {
   res.status(200).json('user assigned');
 });
 
-router.post('/unassignUser', controller.unassignUser, (req, res) => {
+router.post('/unassignUser', listController.unassignUser, (req, res) => {
   res.status(200).json('user unassigned');
 });
 
