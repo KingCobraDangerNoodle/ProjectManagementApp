@@ -11,16 +11,28 @@ const Login = (props) => {
   const login = async () => {
     const username = document.getElementById('usernameInput').value;
     const password = document.getElementById('passwordInput').value;
+    /// user and pass cant not be null 
+    if (!username || !password) {//some action }
+    } else {
+      const requestBody = { username, password };
+      const data = await axios.post('/login', requestBody)
+        .then((response) => {
+          console.log(response)
+          // if(typeof response.data === 'object'){
 
-    const requestBody = { username, password };
-    const data = await axios.post('/login', requestBody)
-      .then((response) => {
-        if(response.status === 200) {
-          navigate({
-            pathname: '/home',
-            search: `?username=${username}`});
-        }});
-}
+          // }
+          // else{
+
+          // }
+
+          // if(response.status === 200) {
+          //   navigate({
+          //     pathname: '/home',
+          //     search: `?username=${username}`});
+          // }});
+      });
+    }
+  }
 
   // render username and password inputs, login and signup buttons
   return(
@@ -38,7 +50,6 @@ const Login = (props) => {
       <span><Link to='/signup'>Sign Up</Link></span>
     </div>
   )
-};
 
-
+}
 export default Login;

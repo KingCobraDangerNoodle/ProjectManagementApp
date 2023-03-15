@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux'
 
 
-export const initialState = { lists: [] };
+// export const initialState = { lists: [] };
 export const findInitialState = createAsyncThunk('lists/fetchLists', async () => {
 
   const fetchedState = await axios.get('/home');
@@ -29,7 +29,7 @@ const blankTask = {
 
 const listsSlice = createSlice({
   name: 'lists',
-  initialState,
+  initialState: { lists: [] },
   reducers: {
     // action payload: newListId, fetched in the corresponding thunk
     createList(state, action) {

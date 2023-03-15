@@ -5,7 +5,7 @@ const listController = {
   async home(req, res, next) {
     const data = await List.find({});
     res.locals.lists = data;
-    next;
+    next();
   },
 
   async createList(req, res, next) {
