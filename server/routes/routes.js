@@ -20,7 +20,7 @@ router.post('/login', logInController.login, (req, res) => {
 router.post(
   '/signup',
   logInController.isUnique,
-  controller.signup,
+  logInController.signup,
   (req, res) => {
     res.status(200).json({ message: 'user created' });
   }

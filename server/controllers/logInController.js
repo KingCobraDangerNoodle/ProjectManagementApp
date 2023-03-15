@@ -3,9 +3,7 @@ const People = require('../models/people.js');
 const logInController = {
   async login(req, res, next) {
     console.log('in login middleware');
-
     let result = await People.find({ ...req.body });
-    // console.log(result);
     if (result.length === 0) {
       res.status(400).send('Username or password is incorrect');
     } else {

@@ -1,7 +1,7 @@
-import { mongoose, Schema } from ('.dbConfig');
+const mongoose = require('mongoose');
 
 // rewrite schema to only reference task to eliminate confusion
-const taskArrSchema = new Schema({
+const taskArrSchema = new mongoose.Schema({
   task: {
     type: String,
     required: true,
@@ -10,6 +10,6 @@ const taskArrSchema = new Schema({
   user: String, // here we have user, is this the user that create task or is assigned task?
 });
 
-const taskArr = mongoose.model('taskArr', taskArrSchema);
+const taskArr = mongoose.model('taskArr', taskArrSchema, 'taskArr');
 
 module.exports = taskArr;

@@ -2,8 +2,23 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const PORT = 3000;
-
 const routes = require('./routes/routes.js');
+const mongoose = require('mongoose');
+
+// connect database
+const MONGO_URI = 'mongodb+srv://zacharythejesus:MQ5qEWGEEZgX8nLj@pm-app.k8txydl.mongodb.net/?retryWrites=true&w=majority';
+mongoose.pluralize(null);
+mongoose
+  .connect(MONGO_URI, {
+    // options for the connect method to parse the URI
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // sets the name of the DB that our collections are part of
+    dbName: 'jobs'
+  })
+  .then(() => console.log('Connected to Mongo DB.'))
+  .catch((err) => console.log(err));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
