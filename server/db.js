@@ -1,4 +1,5 @@
 const { Pool } = require('pg');
+require('dotenv').config();
 
 const pool = new Pool({
   user: process.env.DATABASE_USER,
@@ -17,13 +18,12 @@ module.exports = {
   login: async (user) => {
     const { username, password } = user;
     const findUserQuery = {
-      text: `SELECT name, id FROM users WHERE username = $1 AND password = $2`,
+      text: `SELECT username, id FROM users WHERE username = $1 AND password = $2`,
       values: [username, password],
     };
     try {
-      const result = await pool.query(findUserQuery); 
-    //   return result.rows[0];
-      console.log(result.rows[0])
+      const result = await pool.query(findUserQuery);
+      return result.rows;
     } catch (err) {
       return err;
     }

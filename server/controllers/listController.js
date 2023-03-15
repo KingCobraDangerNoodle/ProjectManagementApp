@@ -3,8 +3,8 @@ const List = require('../models/list.js');
 const listController = {
   // this would be equivalent to show all or index
   async home(req, res, next) {
-    const data = await List.find({});
-    res.locals.lists = data;
+    // const data = await List.find({});
+    // res.locals.lists = data;
     next();
   },
 

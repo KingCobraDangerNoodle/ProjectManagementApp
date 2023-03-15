@@ -8,8 +8,6 @@ require('dotenv').config();
 
 const db = require('./db')
 
-let user = {username:'andrew', password:'andrew'}
-db.login(user)
 
 // connect database
 // const MONGO_URI = process.env.DB_KEY;
