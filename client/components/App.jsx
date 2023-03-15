@@ -6,7 +6,7 @@ import { findInitialState } from '../slice.js';
 
 const App = (props) => {
   // this should update state from the DB when app renders
-  store.dispatch(findInitialState());
+  // store.dispatch(findInitialState());
 
   return (
     <div>

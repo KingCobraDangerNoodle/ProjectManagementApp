@@ -1,15 +1,21 @@
-const User = require('../models/user.js');
+// const User = require('../models/user.js');
+const db = require('../db');
+const User = require('../models/user');
 
 const userController = {
   async login(req, res, next) {
     console.log('in login middleware');
-    let result = await User.find({ ...req.body });
-    if (result.length === 0) {
-      res.status(400).send('Username or password is incorrect');
+    const { username, password } = req.body;
+    let user = new User(username, password);
+    let dbresult = await db.login(user);
+    // console.log(dbresult);
+    if (dbresult.length === 0) {
+      res.locals.user = 'Username or password is incorrect.';
     } else {
-      res.locals.user = result;
-      next();
+      user.password = null;
+      res.locals.user = dbresult[0];
     }
+    return next();
   },
 
   async signup(req, res, next) {
@@ -23,14 +29,14 @@ const userController = {
     console.log('in isUnique middleware');
 
     const result = await User.findOne({
-      username: req.body.username
+      username: req.body.username,
     });
     if (result === null) {
       next();
     } else {
       res.status(400).send('Username already exists');
     }
-  }
+  },
 };
 
 module.exports = userController;

@@ -3,22 +3,25 @@ const app = express();
 const path = require('path');
 const PORT = 3000;
 const routes = require('./routes/routes.js');
-const mongoose = require('mongoose');
+// const mongoose = require('mongoose');
 require('dotenv').config();
 
+const db = require('./db')
+
+
 // connect database
-const MONGO_URI = process.env.DB_KEY;
-mongoose.pluralize(null);
-mongoose
-  .connect(MONGO_URI, {
-    // options for the connect method to parse the URI
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    // sets the name of the DB that our collections are part of
-    dbName: 'jobs'
-  })
-  .then(() => console.log('Connected to Mongo DB.'))
-  .catch((err) => console.log(err));
+// const MONGO_URI = process.env.DB_KEY;
+// mongoose.pluralize(null);
+// mongoose
+//   .connect(MONGO_URI, {
+//     // options for the connect method to parse the URI
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//     // sets the name of the DB that our collections are part of
+//     dbName: 'jobs'
+//   })
+//   .then(() => console.log('Connected to Mongo DB.'))
+//   .catch((err) => console.log(err));
 
 
 app.use(express.json());
