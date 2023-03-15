@@ -1,8 +1,7 @@
 const express = require('express');
 const listController = require('../controllers/listController.js');
-const logInController = require('../controllers/logInController.js');
-const taskController = require('../controllers/taskController.js');
 const userController = require('../controllers/userController.js');
+const taskController = require('../controllers/taskController.js');
 
 const router = express.Router();
 
@@ -12,15 +11,15 @@ router.get('/home', listController.home, (req, res) => {
   res.status(200).send(res.locals.lists);
 });
 
-router.post('/login', logInController.login, (req, res) => {
+router.post('/login', userController.login, (req, res) => {
   console.log('in login route');
-  res.status(200).send(res.locals.people);
+  res.status(200).send(res.locals.user);
 });
 
 router.post(
   '/signup',
-  logInController.isUnique,
-  logInController.signup,
+  userController.isUnique,
+  userController.signup,
   (req, res) => {
     res.status(200).json({ message: 'user created' });
   }

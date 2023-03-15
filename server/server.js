@@ -4,9 +4,10 @@ const path = require('path');
 const PORT = 3000;
 const routes = require('./routes/routes.js');
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 // connect database
-const MONGO_URI = 'mongodb+srv://zacharythejesus:MQ5qEWGEEZgX8nLj@pm-app.k8txydl.mongodb.net/?retryWrites=true&w=majority';
+const MONGO_URI = process.env.DB_KEY;
 mongoose.pluralize(null);
 mongoose
   .connect(MONGO_URI, {
