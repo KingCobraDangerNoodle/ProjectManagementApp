@@ -49,10 +49,10 @@ const List = (props) => {
     dispatch(deleteList(updatedList));
   }
 
-  const
 
-  const addTaskInput(e,input) => {
+  function addTaskInput(e,input) {
     if (e.key === 'Enter' || e.keyCode === 13) {
+      console.log(e.key, e.keyCode)
       setTasks([...tasks,input])
     }
   }
@@ -65,7 +65,7 @@ const List = (props) => {
         <input name='title' type='text' placeholder='Add Title' defaultValue={props.title}></input>
       </div>
         <label htmlFor='task'>Add Task</label>
-        <input name='task' type='text' placeholder='Add Task' value onKeyUp={ }></input>
+        <input name='task' type='text' placeholder='Add Task' onKeyUp={(e) => {}}></input>
       <></>
       <div>Tasks:
       {tasks.map((task)=><Task description={task} deleteTaskHandler = {deleteTaskHandler}/>)}

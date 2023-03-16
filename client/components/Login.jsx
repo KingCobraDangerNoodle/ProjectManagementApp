@@ -2,10 +2,14 @@
 import React from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import axios from 'axios';
+import { userIsAuthenticated } from '../slice';
+import { useDispatch } from 'react-redux';
+
 // define Login component
 const Login = (props) => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch()
 
   // define onClick functionality for the login button
   const login = async () => {
@@ -18,6 +22,7 @@ const Login = (props) => {
       const requestBody = { username, password };
       const data = await axios.post('/login', requestBody).then((response) => {
         if (typeof response.data === 'object') {
+          dispatch(userIsAuthenticated(response.data));
           navigate({
                 pathname: '/home',
                 search: `?username=${username}`});

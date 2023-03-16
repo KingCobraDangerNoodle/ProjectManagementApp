@@ -1,4 +1,4 @@
-
+$primary-color: #38d39f;
 
 body {
 	font-family: "Roboto", sans-serif;
@@ -35,14 +35,14 @@ body {
 		padding: 20px 100px;
 		border-radius: 5px;
 		border: none;
-		background-color: #38d39f;
+		background-color: $primary-color;
 		color: white;
 
 		&:hover{
 			background-color: white;
-			color: #38d39f;
+			color: $primary-color;
 			cursor: pointer;
-			border: 1px solid #38d39f;
+			border: 1px solid $primary-color;
 		}
 	}
 
@@ -57,7 +57,7 @@ body {
 		}
 
 	a{
-		color: #38d39f;
+		color: $primary-color;
 	}
 
 }
@@ -67,14 +67,14 @@ body {
 	justify-content: space-between;
 	align-items: center;
 	padding: 20px;
-	background-color: #38d39f;
+	background-color: $primary-color;
 	color: white;
 	font-size: 20px;
 	font-weight: bold;
 
 	button{
 		border: 1px solid white;
-		background-color: #38d39f;
+		background-color: $primary-color;
 		color: white;
 		font-size: 15px;
 		font-weight: bold;
@@ -83,7 +83,7 @@ body {
 
 		&:hover{
 			background-color: white;
-			color: #38d39f;
+			color: $primary-color;
 			cursor: pointer;
 		}
 	}
@@ -115,7 +115,7 @@ body {
 	}
 	button{
 		border: none;
-		background-color: #38d39f;
+		background-color: $primary-color;
 		color: white;
 		font-size: 15px;
 		font-weight: bold;
@@ -125,9 +125,9 @@ body {
 
 		&:hover{
 			background-color: white;
-			color: #38d39f;
+			color: $primary-color;
 			cursor: pointer;
-			border: 1px solid #38d39f;
+			border: 1px solid $primary-color;
 		}
 	}
 	

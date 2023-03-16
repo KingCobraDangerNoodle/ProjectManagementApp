@@ -14,12 +14,12 @@ export const findInitialState = createAsyncThunk(
 const blankList = {
   id: undefined,
   title: '',
-  tasks: []
+  tasks: [],
 };
 
 const blankTask = {
   description: '',
-  currentList: ''
+  currentList: '',
 };
 
 // Propose List as object to delete or add task (0)n rather than iterating through array to find List at Index
@@ -29,25 +29,30 @@ const listsSlice = createSlice({
   initialState: {
     user: {
       username: null,
-      userId: null
+      userId: null,
     },
     lists: {
       id: {
         dataBaseId: 'Number', // this is value would be a key in the lists obj
         title: 'Title',
-        tasks:[]
+        tasks: [],
       },
-      length: '0' //we can generate this the example above as an example which the user can
-    }
+      length: '0', //we can generate this the example above as an example which the user can
+    },
   },
   reducers: {
+    userIsAuthenticated(state, action) {
+      console.log(action.payload)
+      state.user.username = action.payload.username;
+      state.user.userId = action.payload.id;
+    },
     // action payload: newListId, fetched in the corresponding thunk
     createList(state, action) {
       // Object.assign(target, source);
       // example
       // I think this should update the state of length when we assign a new obj to list
       state.lists[length] = Object.assign(blankList, {
-        id: ++state.lists.length
+        id: ++state.lists.length,
       });
 
       console.log('in createList action');
@@ -100,7 +105,7 @@ const listsSlice = createSlice({
       state.lists[action.payload.newListIndex].tasks.push(
         action.payload.taskDetails
       );
-    }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -110,7 +115,7 @@ const listsSlice = createSlice({
       .addCase(findInitialState.fulfilled, (state, action) => {
         state.lists = action.payload;
       });
-  }
+  },
 });
 
 export const thunks = {
@@ -150,7 +155,7 @@ export const thunks = {
           if (response.status !== 200) return 'Error in addTaskThunk';
         });
     };
-  }
+  },
   // // **edit considering the necessary inputs and outputs for server requests
   // deleteTaskThunk(listIndexAndId,){
   //   return async (state, action) => {
@@ -187,12 +192,13 @@ export const thunks = {
 };
 
 export const {
+  userIsAuthenticated,
   createList,
   deleteList,
   addTask,
   deleteTask,
   saveTask,
   moveTask,
-  saveList
+  saveList,
 } = listsSlice.actions;
 export default listsSlice;
