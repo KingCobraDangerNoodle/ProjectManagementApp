@@ -1,4 +1,5 @@
 const List = require('../models/list.js');
+const db = require('../db');
 
 const listController = {
   // this would be equivalent to show all or index
@@ -8,25 +9,22 @@ const listController = {
     next();
   },
 
-  async createList(req, res, next) {
-    console.log('in createList middleware');
-    const data = await List.create({ title: ' ' });
-    console.log(data);
-    res.locals._id = data._id;
-    // console.log(data);
-    next();
-  },
+  // async createList(req, res, next) {
+  //   console.log('in createList middleware');
+  //   const data = await List.create({ title: ' ' });
+  //   console.log(data);
+  //   res.locals._id = data._id;
+  //   // console.log(data);
+  //   next();
+  // },
 
   async saveList(req, res, next) {
-    console.log('in saveList middleware');
-    const { title, team, tasks, _id } = req.body;
-    const updated = await List.updateOne(
-      { _id },
-      { title, team, taskArr: tasks },
-      { new: true }
-    );
-    res.locals.updated = updated;
-    next();
+    console.log("saving list...")
+    const { userId, title, tasks } = req.body;
+    let list = new List(userId, title, tasks);
+    list = await db.saveList(list); //resave with attached list primary key 
+    res.locals.list = list;
+    return next();
   },
 
   async deleteList(req, res, next) {
