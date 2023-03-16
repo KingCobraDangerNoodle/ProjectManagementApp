@@ -1,6 +1,8 @@
-
+const { current } = require('@reduxjs/toolkit');
 const { Pool } = require('pg');
 require('dotenv').config();
+const { List } = require('./models/list');
+const { User } = require('./models/User');
 
 const pool = new Pool({
   user: process.env.DATABASE_USER,
@@ -15,12 +17,42 @@ module.exports = {
   login: async (user) => {
     const { username, password } = user;
     const findUserQuery = {
-      text: `SELECT username, id FROM users WHERE username = $1 AND password = $2`,
+      text: `SELECT username, users.id as "userId", title, lists.id as "listId", description FROM users join lists on users_id = users.id join tasks on lists_id = lists.id WHERE username = $1 AND password = $2 order by tasks.lists_id asc`,
       values: [username, password],
     };
     try {
       const result = await pool.query(findUserQuery);
-      return result.rows;
+      const userFound = result.rows[0]; //object containing username, user
+
+      // function makeListsArr(userFound) {
+      //   let { username, userId, title, listId, description } = userFound[0];
+      //   let currentListId = listId;
+      //   let list = new List(userId, title, tasks, listId);
+      //   console.log(currentListId, list)
+      //   for (const el of userFound) {
+      //     if (currentListId === el.listId) {
+      //       list.tasks.push(el.description);
+      //     } else {
+      //       currentListId = el.listId;
+      //       user.lists.push(list);
+      //       list = new List(username, password, userId);
+      //       list.tasks.push(el.description);
+      //     }
+      //   }
+      //   return user;
+      // }
+
+      // const save = makeListsArr(userFound)
+      // console.log(save)
+
+
+      if (userFound) {
+        //user exists. query db for lists they own
+      } else {
+        //user doesn't exist
+        return undefined;
+      }
+      return userFound;
     } catch (err) {
       return err;
     }
@@ -35,9 +67,8 @@ module.exports = {
     try {
       const listQueryResult = await pool.query(saveListEntryQuery);
       listPrimaryKey = listQueryResult.rows[0].id;
-    }
-    catch (err) {
-      console.log("ERROR OCCURED");
+    } catch (err) {
+      console.log('ERROR OCCURED');
       return err;
     }
 
@@ -50,8 +81,7 @@ module.exports = {
       try {
         saveTaskEntryQuery.values = [task, listPrimaryKey];
         await pool.query(saveTaskEntryQuery);
-      }
-      catch (err) {
+      } catch (err) {
         return err;
       }
     }
@@ -65,12 +95,10 @@ module.exports = {
       values: [listId],
     };
     try {
-      let result = await pool.query(deleteListEntryQuery)
-      console.log(result.rows[0])
+      let result = await pool.query(deleteListEntryQuery);
+      console.log(result.rows[0]);
+    } catch (err) {
+      return err;
     }
-    catch (err){
-      return err
-    }
-  }
-
+  },
 };

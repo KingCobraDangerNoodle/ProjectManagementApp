@@ -8,12 +8,11 @@ const userController = {
     const { username, password } = req.body;
     let user = new User(username, password);
     let dbresult = await db.login(user);
-    // console.log(dbresult);
-    if (dbresult.length === 0) {
+    if (dbresult) {
+      res.locals.user = dbresult;
+    }
+    else {
       res.locals.user = 'Username or password is incorrect.';
-    } else {
-      user.password = null;
-      res.locals.user = dbresult[0];
     }
     return next();
   },

@@ -14,10 +14,10 @@ const Toolbar = (props) => {
 
   return(
     <div className = 'toolBar'>
-      <div className = 'title'>Team</div>
+      <div className = 'title'>{props.username}</div>
       <div className = 'right align'>
         <button onClick={() => dispatch(thunks.createListThunk())}>Add List</button>
-        <button>Delete All Tasks</button>
+        <button>Save Project</button>
         <button onClick={() => navigate('/')}>Sign Out</button>
       </div>
     </div>

@@ -21,7 +21,7 @@ class List {
   constructor(userId, title, tasks, listId) {
     this.userId = userId; //used as foreign key
     this.title = title; //string
-    this.tasks = tasks; //array of strings
+    this.tasks = tasks || null; //array of strings
     this.listId = listId || null; //number or null
   }
 }
