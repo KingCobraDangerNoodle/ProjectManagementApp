@@ -3,9 +3,6 @@ const listController = require('../controllers/listController.js');
 const userController = require('../controllers/userController.js');
 const taskController = require('../controllers/taskController.js');
 
-
-
-
 const router = express.Router();
 
 router.use(express.json());
@@ -13,10 +10,10 @@ router.use(express.json());
 router.get('/home', listController.home, (req, res) => {
   res.status(200).send(res.locals.lists);
 });
-
+// should be get request as we are not adding/modifying data in DB
 router.post('/login', userController.login, (req, res) => {
   console.log('in login route');
-  res.status(200).send(res.locals.user);
+  res.status(200).send({user: 'andrew'});
 });
 
 router.post(

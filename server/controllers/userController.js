@@ -3,6 +3,11 @@ const db = require('../db');
 const User = require('../models/user');
 
 const userController = {
+  async tryCatch(promise) {
+    if (error) err
+    if (response) response
+  },
+
   async login(req, res, next) {
     console.log('in login middleware');
     const { username, password } = req.body;
