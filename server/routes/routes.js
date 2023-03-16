@@ -3,9 +3,6 @@ const listController = require('../controllers/listController.js');
 const userController = require('../controllers/userController.js');
 const taskController = require('../controllers/taskController.js');
 
-
-
-
 const router = express.Router();
 
 router.use(express.json());
@@ -36,8 +33,8 @@ router.post('/deleteList', listController.deleteList, (req, res) => {
   res.status(200).json('list deleted');
 });
 
-router.post('/saveList', listController.saveList, (req, res) => {
-  res.status(200).json(res.locals.updated);
+router.post('/saveList', (req, res) => {
+  res.status(200).json("list created");
 });
 
 router.post(

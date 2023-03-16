@@ -1,3 +1,4 @@
+
 const { Pool } = require('pg');
 require('dotenv').config();
 
@@ -28,4 +29,34 @@ module.exports = {
       return err;
     }
   },
+  saveList: async (list) => {
+
+    // //insert the list into the list table
+    // const saveListEntryQuery = {
+    //   text: `INSERT INTO lists (title,users_id) VALUES ($1,$2) RETURNING "id"`,
+    //   values: [list.title, list.userId],
+    // };
+    // try {
+    //   const listForeignKey = await pool.query(saveListEntryQuery);
+    // }
+    // catch (err) {
+    //   return err;
+    // }
+
+    // //referencing the list foreign key iterate over tasks inserting
+    // //each into task table
+    // const saveTaskEntryQuery = {
+    //   text: `INSERT INTO tasks (description, lists_id) VALUES ($1,$2)`,
+    //   values: [task, listForeignKey],
+    // };
+
+    // list.tasks.forEach(async (task) => {
+    //   try {
+    //     const taskId = await pool.query(saveTaskEntryQuery);
+    //   }
+    //   catch (err) {
+    //     return err;
+    //   }
+    // })
+  }
 };

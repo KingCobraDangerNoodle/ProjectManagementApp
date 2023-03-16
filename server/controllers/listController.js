@@ -8,25 +8,20 @@ const listController = {
     next();
   },
 
-  async createList(req, res, next) {
-    console.log('in createList middleware');
-    const data = await List.create({ title: ' ' });
-    console.log(data);
-    res.locals._id = data._id;
-    // console.log(data);
-    next();
-  },
+  // async createList(req, res, next) {
+  //   console.log('in createList middleware');
+  //   const data = await List.create({ title: ' ' });
+  //   console.log(data);
+  //   res.locals._id = data._id;
+  //   // console.log(data);
+  //   next();
+  // },
 
   async saveList(req, res, next) {
-    console.log('in saveList middleware');
-    const { title, team, tasks, _id } = req.body;
-    const updated = await List.updateOne(
-      { _id },
-      { title, team, taskArr: tasks },
-      { new: true }
-    );
-    res.locals.updated = updated;
-    next();
+    // const { userId, title, tasks } = req.body;
+    // let list = new List(username, password);
+    // let dbresult = await db.saveList(list);
+    return next;
   },
 
   async deleteList(req, res, next) {
