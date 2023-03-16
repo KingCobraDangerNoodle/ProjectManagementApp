@@ -15,12 +15,20 @@ module.exports = {
   login: async (user) => {
     const { username, password } = user;
     const findUserQuery = {
-      text: `SELECT username, id FROM users WHERE username = $1 AND password = $2`,
+      text: `SELECT username, users.id as "userId", title, lists.id as "listId", description FROM users join lists on users_id = users.id join tasks on lists_id = lists.id WHERE username = $1 AND password = $2`,
       values: [username, password],
     };
     try {
       const result = await pool.query(findUserQuery);
-      return result.rows;
+      const userFound = result.rows; //object containing username, user table primary key
+
+      if (userFound) { //user exists. query db for lists they own
+
+      }
+      else { //user doesn't exist
+        return undefined;
+      }
+      return userFound;
     } catch (err) {
       return err;
     }
@@ -68,7 +76,7 @@ module.exports = {
       let result = await pool.query(deleteListEntryQuery)
       console.log(result.rows[0])
     }
-    catch (err){
+    catch (err) {
       return err
     }
   }
