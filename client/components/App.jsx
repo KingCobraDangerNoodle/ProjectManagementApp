@@ -1,20 +1,18 @@
 import React from 'react';
-import Toolbar from './Toolbar.jsx';
-import ListGenerator from './ListGenerator.jsx';
-import store from '../store.js';
-import { findInitialState } from '../slice.js';
+import Login from './Login.jsx';
+import Signup from './Signup.jsx';
+import Home from './Home.jsx'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
-const App = (props) => {
-  // this should update state from the DB when app renders
-  // store.dispatch(findInitialState());
-
+ export default function App (props) {
   return (
-    <div>
-      <Toolbar /> 
-      <ListGenerator /> 
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route path='/' element={<Login />} />
+        {/* This is commented out so only login and home render */}
+        {/* <Route path='/signup' element={<Signup />} /> */}
+        <Route path='/home' element={<Home />} />
+      </Routes>
+    </ Router>
+  );
 };
-
-
-export default App;

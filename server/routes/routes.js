@@ -25,45 +25,41 @@ router.post(
   }
 );
 
-router.post('/createList', listController.createList, (req, res) => {
-  res.status(200).json(res.locals._id); // tell them to store this id in list component
-});
-
-router.post('/deleteList', listController.deleteList, (req, res) => {
+router.post('/list/delete', listController.deleteList, (req, res) => {
   res.status(200).json('list deleted');
 });
 
-router.post('/saveList', listController.saveList, (req, res) => {
-  res.status(200).json(res.locals.updated);
+router.post('/list/save', listController.saveList, (req, res) => {
+  res.status(200).json(res.locals.list);
 });
 
-router.post(
-  '/createAndAddTask',
-  taskController.createAndAddTask,
-  (req, res) => {
-    res.status(200).json('task created');
-  }
-);
+// router.post(
+//   '/createAndAddTask',
+//   taskController.createAndAddTask,
+//   (req, res) => {
+//     res.status(200).json('task created');
+//   }
+// );
 
-router.post('/editTask', taskController.editTask, (req, res) => {
-  res.status(200).json('task edited');
-});
+// router.post('/editTask', taskController.editTask, (req, res) => {
+//   res.status(200).json('task edited');
+// });
 
-router.post('/deleteTask', taskController.deleteTask, (req, res) => {
-  res.status(200).json('task deleted');
-});
+// router.post('/deleteTask', taskController.deleteTask, (req, res) => {
+//   res.status(200).json('task deleted');
+// });
 
-router.post('/moveTask', taskController.moveTask, (req, res) => {
-  res.status(200).json('task moved');
-});
+// router.post('/moveTask', taskController.moveTask, (req, res) => {
+//   res.status(200).json('task moved');
+// });
 
-// this should be under userController ideally
-router.post('/assignUser', listController.assignUser, (req, res) => {
-  res.status(200).json('user assigned');
-});
+// // this should be under userController ideally
+// router.post('/assignUser', listController.assignUser, (req, res) => {
+//   res.status(200).json('user assigned');
+// });
 
-router.post('/unassignUser', listController.unassignUser, (req, res) => {
-  res.status(200).json('user unassigned');
-});
+// router.post('/unassignUser', listController.unassignUser, (req, res) => {
+//   res.status(200).json('user unassigned');
+// });
 
 module.exports = router;

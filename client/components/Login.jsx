@@ -43,7 +43,7 @@ const Login = (props) => {
       <input type="text" placeholder="Password" id="passwordInput" />
       <button onClick={login}>Log In</button>
       <span>
-        <Link to="/signup">Sign Up</Link>
+        <Link to="/signup">NOT WORKING Sign Up</Link>
       </span>
     </div>
   );
