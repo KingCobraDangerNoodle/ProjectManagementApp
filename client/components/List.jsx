@@ -9,13 +9,13 @@ const List = (props) => {
   // assign the evaluated result of useDispatch to a constant, dispatch
   const dispatch = useDispatch();
 
-  const[tasks,setTasks]= useState([])
-  const [input,setInput] = useState("");
+  const [tasks, setTasks] = useState([])
+  const [input, setInput] = useState("");
 
-  function deleteTaskHandler(task){
+  function deleteTaskHandler(task) {
     const newTaskArr = tasks.slice(0); //make copy of task arr
-    newTaskArr.forEach((el,index)=>{
-      if(el === task) newTaskArr.splice(index,1); //cut out task
+    newTaskArr.forEach((el, index) => {
+      if (el === task) newTaskArr.splice(index, 1); //cut out task
       setTasks(newTaskArr);
     })
   }
@@ -36,25 +36,29 @@ const List = (props) => {
   // }
 
   // define the addTask functionality that will trigger on button click
+  // const addTask = () => {
+  //   let listIndex;
+  //   for (let i = 0; i < stateLists.length; i++) {
+  //     if (stateLists[i].id === props.id) listIndex = i;
+  //   }
+  //   dispatch(addTask(listIndex));
+  // }
+  // // define the deleteList functionality that will trigger on button click
+  // const deleteLists = () => {
+  //   const updatedList = stateLists.filter(list => list.id !== props.id);
+  //   dispatch(deleteList(updatedList));
+  // }
+
+
+
   const addTask = () => {
-    let listIndex;
-    for (let i = 0; i < stateLists.length; i++) {
-      if (stateLists[i].id === props.id) listIndex = i;
-    }
-    dispatch(addTask(listIndex));
-  }
-  // define the deleteList functionality that will trigger on button click
-  const deleteLists = () => {
-    const updatedList = stateLists.filter(list => list.id !== props.id);
-    dispatch(deleteList(updatedList));
-  }
+    console.log('in Add Task')
 
-  const
 
-  const addTaskInput(e,input) => {
-    if (e.key === 'Enter' || e.keyCode === 13) {
-      setTasks([...tasks,input])
-    }
+    setTasks([...tasks, input])
+
+    console.log(state.lists)
+
   }
 
   // render the array of tasks and buttons
@@ -64,14 +68,16 @@ const List = (props) => {
         <label htmlFor='title'>Title:</label>
         <input name='title' type='text' placeholder='Add Title' defaultValue={props.title}></input>
       </div>
-        <label htmlFor='task'>Add Task</label>
-        <input name='task' type='text' placeholder='Add Task' value onKeyUp={ }></input>
-      <></>
+      <div>
+
+        <input name='task' type='text' placeholder='Add Task' onChange={(e) => setInput(e.target.value)} ></input>
+        <button onClick={addTask}></button>
+      </div>
       <div>Tasks:
-      {tasks.map((task)=><Task description={task} deleteTaskHandler = {deleteTaskHandler}/>)}
+        {tasks.map((task) => <Task description={task} deleteTaskHandler={deleteTaskHandler} />)}
       </div>
       <div className='buttonRow'>
-        <button onClick={deleteLists}>Delete List</button>
+        {/* <button onClick={deleteLists}>Delete List</button> */}
         {/* <button onClick={() => dispatch(thunks.saveListThunk({title: props.title, team: props.team, _id: props._id, tasks: props.tasks}))}>Save List</button> */}
       </div>
     </div>
