@@ -1,4 +1,5 @@
 const List = require('../models/list.js');
+const db = require('../db');
 
 const listController = {
   // this would be equivalent to show all or index
@@ -18,10 +19,12 @@ const listController = {
   // },
 
   async saveList(req, res, next) {
-    // const { userId, title, tasks } = req.body;
-    // let list = new List(username, password);
-    // let dbresult = await db.saveList(list);
-    return next;
+    console.log("saving list...")
+    const { userId, title, tasks } = req.body;
+    let list = new List(userId, title, tasks);
+    list = await db.saveList(list); //resave with attached list primary key 
+    res.locals.list = list;
+    return next();
   },
 
   async deleteList(req, res, next) {
