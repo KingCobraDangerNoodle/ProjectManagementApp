@@ -37,9 +37,9 @@ const Signup = (props) => {
           id='signupPassword'
       />
       <button onClick={signupAndLogin}>Sign Up</button>
-      <span><Link to='/'>Already have an account? Log In</Link></span>
+      <span><Link to='/login'>Already have an account? Log In</Link></span>
     </div>
   )
-} 
+}
 
 export default Signup;
