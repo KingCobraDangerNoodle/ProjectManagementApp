@@ -4,9 +4,10 @@ import { useSelector } from 'react-redux';
 
 const ListGenerator = (props) => {
 
+
   // declare a constant lists assign it to state.reducer.lists using useSelector
   const lists = useSelector((state) => {
-    return state.lists;
+    return Object.values(state.lists);
   })
   // declare a constant arrOfLists and populate it with the lists in state.reducer.lists
   const arrOfLists = [];
