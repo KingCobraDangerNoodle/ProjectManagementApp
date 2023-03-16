@@ -28,11 +28,9 @@ const listController = {
   },
 
   async deleteList(req, res, next) {
-    const { _id } = req.body;
-
-    const deleted = await List.deleteOne({ _id });
-    console.log(deleted);
-    next();
+    const { listId } = req.body;
+    await db.deleteList(listId);
+    return next();
   },
 
   // REFERENCE USERS BUT MODIFYING LIST -
