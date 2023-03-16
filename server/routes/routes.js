@@ -25,11 +25,11 @@ router.post(
   }
 );
 
-// router.post('/deleteList', listController.deleteList, (req, res) => {
-//   res.status(200).json('list deleted');
-// });
+router.post('/list/delete', listController.deleteList, (req, res) => {
+  res.status(200).json('list deleted');
+});
 
-router.post('/saveList', listController.saveList, (req, res) => {
+router.post('/list/save', listController.saveList, (req, res) => {
   res.status(200).json(res.locals.list);
 });
 

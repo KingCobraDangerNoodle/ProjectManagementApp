@@ -57,5 +57,20 @@ module.exports = {
     }
     list.listId = listPrimaryKey; //update listId on list object
     return list;
+  },
+
+  deleteList: async (listId) => {
+    const deleteListEntryQuery = {
+      text: `DELETE FROM lists WHERE id = $1 RETURNING "title"`,
+      values: [listId],
+    };
+    try {
+      let result = await pool.query(deleteListEntryQuery)
+      console.log(result.rows[0])
+    }
+    catch (err){
+      return err
+    }
   }
+
 };
